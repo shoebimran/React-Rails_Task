@@ -10,9 +10,9 @@ function App() {
   const [bands, setBands] = useState([]);
 
   const handleSearch = async (searchCity) => {
-    const fetchedBands = await fetchBandsByCity(searchCity);
-    setBands(fetchedBands);
-  };
+  const fetchedBands = await fetchBandsByCity(searchCity);
+  setBands(fetchedBands);
+};
 
   useEffect(() => {
     if (city) handleSearch(city);

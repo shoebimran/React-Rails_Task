@@ -22,7 +22,7 @@
   content: "";
   position: absolute;
   top: 105%;
-  left: calc(100% + -0.2em); /* Positioning it outside the circle */
+  left: calc(100% + -0.2em);
   width: 1.5em;
   height: 6px;
   background-color: var(--frame-color);
