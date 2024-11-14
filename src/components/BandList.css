@@ -1,0 +1,39 @@
+.band-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.band-card {
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.band-card:hover {
+  transform: scale(1.05);
+}
+
+.band-name {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.band-year {
+  font-size: 1rem;
+  color: #666;
+}
+
+.no-bands {
+  font-size: 1.5rem;
+  color: #999;
+  text-align: center;
+}

@@ -1,0 +1,122 @@
+:root {
+  --font-size: 20px;
+  --frame-color: #000000;
+  --size: 2.5em;
+  --open-width: 18em;
+  --open-padding: 0.3em 2.1em 0.3em 0.4em;
+  --frame-thickness: 0.1em;
+  --handle-height: 1.4em;
+  --open-trans-time: 800ms;
+  --close-trans-time: 150ms;
+}
+/* Search Box Styling */
+.search-box {
+  font-size: var(--font-size);
+  border: solid var(--frame-thickness) var(--frame-color);
+  display: inline-block;
+  position: relative;
+  border-radius: var(--size);
+}
+
+.search-box::after {
+  content: "";
+  position: absolute;
+  top: 105%;
+  left: calc(100% + -0.2em); /* Positioning it outside the circle */
+  width: 1.5em;
+  height: 6px;
+  background-color: var(--frame-color);
+  transform: translateY(-50%) rotate(45deg);
+  transition: opacity 0.3s ease;
+}
+
+.search-box input[type="text"] {
+  font-family: inherit;
+  font-weight: bold;
+  width: var(--size);
+  height: var(--size);
+  padding: var(--open-padding);
+  border: none;
+  box-sizing: border-box;
+  border-radius: var(--size);
+  transition: width var(--open-trans-time) cubic-bezier(0.68, -0.55, 0.27, 1.55) var(--close-trans-time);
+}
+
+.search-box:hover::before,
+.search-box input[type="text"]:focus ~ ::before,
+.search-box input[type="text"]:not(:placeholder-shown) ~ ::before {
+  opacity: 0;
+}
+
+.search-box input[type="text"]:focus {
+  outline: none;
+}
+
+.search-box input[type="text"]:focus,
+.search-box input[type="text"]:not(:placeholder-shown) {
+  width: var(--open-width);
+  transition: width var(--open-trans-time) cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.search-box input[type="text"]:focus + button[type="reset"] {
+  transform: rotate(-45deg) translateY(0);
+  transition: transform var(--close-trans-time) ease-out var(--open-trans-time);
+}
+
+.search-box input[type="text"]:focus + button[type="reset"]:after {
+  opacity: 1;
+  transition: top var(--close-trans-time) ease-out calc(var(--open-trans-time) + var(--close-trans-time)),
+              right var(--close-trans-time) ease-out calc(var(--open-trans-time) + var(--close-trans-time)),
+              opacity var(--close-trans-time) ease calc(var(--open-trans-time) + var(--close-trans-time));
+}
+
+/* Reset Button Styling */
+.search-box button[type="reset"] {
+  background-color: transparent;
+  width: var(--handle-height);
+  height: var(--handle-height);
+  border: 0;
+  padding: 0;
+  outline: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: calc(var(--size) / 2 - var(--handle-height) / 2);
+  right: calc(var(--size) / 2 - var(--handle-height) / 2);
+  transform: rotate(-45deg) translateY(calc(var(--size) - var(--frame-thickness)));
+  transition: transform var(--close-trans-time) ease-out var(--close-trans-time);
+}
+
+.search-box button[type="reset"]:before,
+.search-box button[type="reset"]:after {
+  content: "";
+  background-color: var(--frame-color);
+  width: var(--frame-thickness);
+  height: var(--handle-height);
+  position: absolute;
+}
+
+.search-box button[type="reset"]:after {
+  transform: rotate(90deg);
+  opacity: 0;
+  transition: transform var(--close-trans-time) ease-out,
+              opacity var(--close-trans-time) ease-out;
+}
+
+
+.search-button {
+  display: none; /* Hidden by default */
+  margin-top: 10px; /* Button appears below the input */
+  padding: 0.5em 2em;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 2.5em;
+  font-weight: bold;
+  transition: transform 150ms ease-out;
+}
+
+.search-button.show {
+  display: inline-block; /* Display button when input is not empty */
+}
