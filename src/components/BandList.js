@@ -7,7 +7,7 @@ const BandList = ({ bands }) => (
       bands.map((band, index) => (
         <div className="band-card" key={index}>
           <h3 className="band-name">{band.name}</h3>
-          <p className="band-year">Founded: {band.founded_year || 'Unknown'}</p>
+           <p className="band-city">City: {band.city}</p>
         </div>
       ))
     ) : (
