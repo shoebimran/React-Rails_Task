@@ -8,11 +8,16 @@ import './App.css';
 function App() {
   const [city, setCity] = useState('');
   const [bands, setBands] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = async (searchCity) => {
-  const fetchedBands = await fetchBandsByCity(searchCity);
-  setBands(fetchedBands);
-};
+    setIsLoading(true); // Start the loader
+    setTimeout(async () => {
+      const fetchedBands = await fetchBandsByCity(searchCity);
+      setBands(fetchedBands);
+      setIsLoading(false); // Stop the loader
+    }, 3000); // Simulate a 3-second delay
+  };
 
   useEffect(() => {
     if (city) handleSearch(city);
@@ -32,11 +37,18 @@ function App() {
         <div className="c"></div>
         <div className="c"></div>
       </div>
-        <LocationFetcher setCity={setCity} />
+      <LocationFetcher setCity={setCity} />
       <div className="search-container">
         <SearchBar onSearch={handleSearch} />
       </div>
-      <BandList bands={bands} />
+      {isLoading ? (
+       <div class="container">
+      <div class="loader">
+     </div>
+     </div>
+      ) : (
+        <BandList bands={bands} />
+      )}
     </div>
   );
 }

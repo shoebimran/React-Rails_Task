@@ -7,7 +7,7 @@ export const fetchBandsByCity = async (city) => {
 
     const bands = (response.data || []).map((band) => ({
       name: band.name,
-      city: band.founded?.name || "Unknown City",
+      city: band.city,
      }));
 
     return bands;

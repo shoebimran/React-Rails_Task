@@ -267,3 +267,40 @@ body {
   color: #888;
   margin-top: 5px;
 }
+.loader {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: #007bff;
+  margin-top: 20px;
+}
+
+.loader::after {
+  content: ' 🎵';
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 8rem 0;
+}
+
+.loader {
+  display: grid;
+  grid-template-columns: repeat(2, 50px);
+  grid-template-rows: repeat(2, 50px);
+  gap: 10px;
+  perspective: 1000px;
+}
